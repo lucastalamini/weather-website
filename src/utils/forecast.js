@@ -8,11 +8,9 @@ const forecast = (latitude, longitude, callback) => {
         callback('Unable to connect to weather services!', undefined)
     } else if (body.error) {
         callback('Unable to find location.', undefined)
-    } else if ((parseFloat(body.currently.precipProbability) * 100) > 40) {
-        callback(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' °C out. There is a ' +  (parseFloat(body.currently.precipProbability) * 100) + '% chance of rain. Consider bringing an umbrella.')
     } else {
-        callback(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' °C out. There is a ' +  (parseFloat(body.currently.precipProbability) * 100) + '% chance of rain.')
-    }
+        callback(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' °C out. The high today is ' + body.daily.data[0].temperatureHigh + ' °C  with a low of ' +  body.daily.data[0].temperatureLow + ' °C. There is a ' + body.currently.precipProbability + '% chance of rain.')
+    } 
 })
 }
 
